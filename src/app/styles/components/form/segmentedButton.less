@@ -1,0 +1,139 @@
+[data-ac-component="form/segmentedButton"] {
+	&, .label, .button-list {
+		float: left;
+		clear: both;
+		width: 100%;
+		height: auto;
+	}
+	
+	.label {
+		clear: none;
+		width: auto;
+		font-size: 1em;
+		text-transform: capitalize;
+		font-weight: @page_base_font_weight_medium;
+		color: @COMPONENT_segmented_button_color;
+
+		&.empty {
+			display: none;
+		}
+	}
+
+	[data-ac-component="infoOverlayTrigger"] {
+		float: left;
+		clear: none;
+	}
+
+	.expand-button {
+		display: none;
+	}
+
+	&.uppercase .button {
+		text-transform: uppercase;
+	}
+
+
+	// STYLE: default
+	// All other styles are based on the default style.
+
+	.button-list {
+		display: flex;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.button {
+		background: transparent;
+		color: @COMPONENT_button_inactive_bg_color;
+
+		&[data-ac-selected="true"] {
+			color: @COMPONENT_button_active_color;
+			background: @COMPONENT_button_active_bg_color;
+			border-color: @COMPONENT_button_active_bg_color;
+		}
+	}
+
+
+	// STYLE: dropdown
+
+	&[data-ac-attr-style="dropdown"] {
+		.button-list {
+			position: relative;
+			z-index: @layer_dropdowns;
+			flex-direction: column;
+			overflow: hidden;
+			background: @COMPONENT_segmented_button_dropdown_button_list_bg_color;
+			border-radius: @COMPONENT_segmented_button_dropdown_button_list_border_radius;
+	
+			.button {
+				display: none;
+				color: @COMPONENT_button_inactive_color;
+				border: none;
+	
+				&[data-ac-selected="true"] {
+					display: block;
+					order: -1;
+					background-image: @COMPONENT_segmented_button_dropdown_button_list_background_image;
+					background-repeat: @COMPONENT_segmented_button_dropdown_button_list_background_repeat;
+					background-position: @COMPONENT_segmented_button_dropdown_button_list_background_position;
+				}
+			}
+		}
+
+		&[data-ac-attr-dropdown-state="open"] .button-list {
+			height: auto;
+
+			.button {
+				display: block;
+			}
+		}
+	}
+
+
+	// STYLE: expandable
+
+	&[data-ac-attr-style="expandable"] {
+		.button-list {
+			overflow: hidden;
+			height: @COMPONENT_segmented_button_expandable_collapsed_button_list_height;
+			flex-wrap: wrap;
+
+			&.display-three-lines {
+				height: @COMPONENT_segmented_button_expandable_collapsed_button_list_of_3_lines;
+			}
+	
+			.button {
+				flex-basis: calc(20% - @COMPONENT_button_margin_l - @COMPONENT_button_margin_r);
+				flex-grow: 1;
+				flex-shrink: 0;
+			}
+		}
+
+		.expand-button {
+			position: relative;
+			display: block;
+			float: right;
+			clear: both;
+			cursor: pointer;
+			color: @COMPONENT_segmented_button_expandable_collapse_toggle_color;
+			font-size: @COMPONENT_segmented_button_expandable_collapse_toggle_size;
+
+			&::after {
+				content: "▼";
+			}
+
+		}
+
+		&[data-ac-attr-dropdown-state="open"] .expand-button {
+			&::after {
+				content: "▲";
+			}
+		}
+
+
+		&[data-ac-attr-dropdown-state="open"] .button-list {
+			height: auto;
+		}
+	}
+}

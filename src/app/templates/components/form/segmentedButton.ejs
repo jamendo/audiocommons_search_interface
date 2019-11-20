@@ -1,0 +1,30 @@
+<div
+	data-ac-component="form/segmentedButton"
+	data-ac-attr-selectType="<%= selectType %>"
+	<%- typeof formFieldId !== 'undefined' ? 'data-ac-attr-formFieldId="' + formFieldId + '"' : '' %>
+	<%- typeof minSelections !== 'undefined' ? 'data-ac-attr-minSelections="' + minSelections + '"' : '' %>
+	<%- typeof style !== 'undefined' ? 'data-ac-attr-style="' + style + '"' : '' %>
+	class="<%- typeof modifiers !== 'undefined' && Array.isArray(modifiers) ? modifiers.join(' ') : '' %>"
+>
+	<div class="label<%= typeof label !== 'string' || label.trim().length === 0 ? ' empty' : '' %>">
+		<%= typeof label !== 'undefined' ? label : '' %>
+	</div>
+
+	<% if (typeof hideInfoOverlayTrigger === 'undefined' || !hideInfoOverlayTrigger) { %>
+		<%- partial('../../components/infoOverlayTrigger') %>
+	<% } %>
+
+	<ul class="button-list">
+		<% for (var i = 0; i < buttons.length; i++) { %>
+			<li
+				class="button<%- buttons[i].modifiers ? ' ' + buttons[i].modifiers.join(' ') : '' %>"
+				<%- buttons[i].selected ? 'data-ac-selected="true"' : '' %>
+				data-ac-value='{ "value": <%= JSON.stringify(buttons[i].value) %> }'
+				title="<%= buttons[i].label %>"
+			>
+				<%= buttons[i].label %>
+			</li>
+		<% } %>
+	</ul>
+	<div class="expand-button"></div>
+</div>

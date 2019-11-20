@@ -1,0 +1,165 @@
+<section class="ac-grid-row ac-grid-no-v-margins search-panel">
+	<header class="ac-grid-row ac-grid-no-v-margins header">
+		<h2><%= translate('pages.results.searchPanel.refineYourSearch') %></h2>
+	</header>
+<!--% debugger %-->
+
+	<!-- Music Type -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/segmentedButton', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.MusicType,
+			selectType: 'multi',
+			minSelections: 1,
+			label: translate('pages.results.searchPanel.musicTypeLabel'),
+			buttons: [{
+				label: translate('pages.results.searchPanel.musicTypeSong'),
+				value: 'song',
+				selected: true
+			}, {
+				label: translate('pages.results.searchPanel.musicTypeSample'),
+				value: 'sample',
+				selected: true
+			}]
+		}) %>
+	</div>
+	<!-- /Music Type -->
+
+
+	<!-- Date -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/dateRange', {
+			label: translate('pages.results.searchPanel.creationDateLabel'),
+			formFieldId: symbols.SearchFormFieldIdentifiers.CreationDate,
+			dateFormat: 'd M yy',
+			numberOfMonths: 3
+		}) %>
+	</div>
+	<!-- /Date -->
+
+
+	<!-- License Type -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/segmentedButton', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.LicenseType,
+			selectType: 'single',
+			style: 'expandable',
+			minSelections: 0,
+			label: translate('pages.results.searchPanel.licenseTypeLabel'),
+			buttons: symbols.License.getAllLicenses().map(license => ({
+				label: symbols.License[license].replace(/_/g, ' '),
+				value: license,
+				selected: sharedData.payload.search.LicenseType ? Math.max.apply(Math, sharedData.payload.search.LicenseType) === license: false
+			}))
+		}) %>
+	</div>
+	<!-- /License Type -->
+
+
+	<!-- Genres, Moods, Themes & Instruments -->
+	<div class="ac-grid-row">
+		<%- partial('../../shared/moodsGenresThemesInstruments', {
+			parts: ['genres', 'moods', 'themes', 'instruments'],
+			modifiers: ['display-three-lines'],
+			getSegmentedButtonLabel: function(part) {
+				return translate('pages.search.' + part + 'Label');
+			},
+			getItemLabel: function(item, part) {
+				return translate('data.' + part + '.' + item.name, item.name);
+			}
+		}) %>
+	</div>
+	<!-- /Genres, Moods, Themes & Instruments -->
+
+
+	<!-- Channels -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/segmentedButton', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.Channels,
+			selectType: 'single',
+			minSelections: 1,
+			label: translate('pages.results.searchPanel.channelsLabel'),
+			buttons: [{
+				label: translate('pages.results.searchPanel.channelsAll'),
+				value: 'all',
+				selected: true
+			}, {
+				label: translate('pages.results.searchPanel.channelsStereo'),
+				value: 'stereo',
+				selected: false
+			}, {
+				label: translate('pages.results.searchPanel.channelsMono'),
+				value: 'mono',
+				selected: false
+			}]
+		}) %>
+	</div>
+	<!-- /Channels -->
+
+
+	<!-- Duration -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/rangeInput', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.Duration,
+			min: 0,
+			max: 240,
+			noValueIfFullRangeSelected: true,
+			label: translate('pages.results.searchPanel.durationLabel')
+		}) %>
+	</div>
+	<!-- /Duration -->
+
+
+	<!-- Samplerate -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/rangeInput', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.Samplerate,
+			min: 0,
+			max: 96,
+			step: 8,
+			noValueIfFullRangeSelected: true,
+			label: translate('pages.results.searchPanel.samplerateLabel')
+		}) %>
+	</div>
+	<!-- /Samplerate -->
+
+
+	<!-- Bitrate -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/rangeInput', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.Bitrate,
+			min: 0,
+			max: 320,
+			step: 32,
+			noValueIfFullRangeSelected: true,
+			label: translate('pages.results.searchPanel.bitrateLabel')
+		}) %>
+	</div>
+	<!-- /Bitrate -->
+
+
+	<!-- Bitdepth -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/rangeInput', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.Bitdepth,
+			min: 0,
+			max: 80,
+			step: 8,
+			noValueIfFullRangeSelected: true,
+			label: translate('pages.results.searchPanel.bitdepthLabel')
+		}) %>
+	</div>
+	<!-- /Bitdepth -->
+
+
+	<!-- File size -->
+	<div class="ac-grid-row">
+		<%- partial('../../components/form/rangeInput', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.FileSize,
+			min: 0,
+			max: 300,
+			noValueIfFullRangeSelected: true,
+			label: translate('pages.results.searchPanel.fileSizeLabel')
+		}) %>
+	</div>
+	<!-- /File size -->
+</section>

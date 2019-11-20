@@ -1,0 +1,19 @@
+[data-ac-style="loading"] {
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: @layer_utils_loader_overlay;
+		text-align: center;
+		background-color: @utils_loader_overlay_bg_color;
+		background-image: @utils_loader_overlay_bg_image;
+		background-repeat: @utils_loader_overlay_bg_repeat;
+		background-position: @utils_loader_overlay_bg_position;
+		background-size: @utils_loader_overlay_bg_size;
+	}
+}

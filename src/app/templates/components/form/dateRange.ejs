@@ -1,0 +1,19 @@
+<div
+	data-ac-component="form/dateRange"
+	<%- typeof formFieldId !== 'undefined' ? 'data-ac-attr-formFieldId="' + formFieldId + '"' : '' %>
+	data-ac-component-options="<%- encodeURIComponent(JSON.stringify({
+		dateFormat: typeof dateFormat !== 'undefined' ? dateFormat : 'mm/dd/yy',
+		numberOfMonths: typeof numberOfMonths !== 'undefined' ? numberOfMonths : undefined
+	})) %>"
+>
+	<div class="label<%= typeof label !== 'string' || label.trim().length === 0 ? ' empty' : '' %>">
+		<%= typeof label !== 'undefined' ? label : '' %>
+	</div>
+
+	<div class="clear-button"><%= translate('generic.clear') %></div>
+
+	<%- partial('../../components/infoOverlayTrigger') %>
+
+	<input type="text" class="from" placeholder="<%= translate('generic.startDate') %>" />
+	<input type="text" class="to" placeholder="<%= translate('generic.endDate') %>" />
+</div>

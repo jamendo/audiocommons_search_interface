@@ -1,0 +1,91 @@
+[data-ac-component="player/playerPopout"] {
+	position: fixed;
+	bottom: 3vh;
+	right: 3vw;
+	width: 200px;
+	height: auto;
+	padding: 1em;
+	z-index: @layer_player_popout;
+	background: #000;
+	color: #fff;
+
+	&.stopped {
+		display: none;
+	}
+
+	.track-image {
+		float: left;
+		clear: none;
+		width: 2em;
+		height: 2em;
+		margin: 0.3em;
+		background-size: cover;
+		background-position: center;
+		background-color: #ddd;
+	}
+
+	.metadata {
+		float: left;
+		clear: none;
+		width: 50%;
+		height: auto;
+		min-height: 1px;
+
+		.track-name, .artist-name {
+			width: 100%;
+			height: 1.4em;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.track-name {
+			font-weight: bold;
+		}
+	}
+
+	.play-pause-button {
+		position: relative;
+		float: right;
+		width: 2em;
+		height: 2em;
+		line-height: 2em;
+		margin: 0.3em;
+		cursor: pointer;
+
+		&::after {
+			content: '▶';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			line-height: inherit;
+			text-align: center;
+			font-size: 1.5em;
+		}
+	}
+	&.playing .play-pause-button::after {
+		content: '▌▌';
+		font-size: 1em;
+	}
+
+	.progress-bar-wrapper {
+		float: left;
+		clear: both;
+		width: 100%;
+		height: 5px;
+		cursor: pointer;
+		background: @COMPONENT_player_popout_progress_track_bg_color;
+
+		.progress-bar {
+			float: left;
+			width: 0;
+			height: 100%;
+			background: @COMPONENT_player_popout_progress_bar_bg_color;
+		}
+	}
+	&.hide-progress-bar .progress-bar-wrapper {
+		visibility: hidden;
+	}
+}

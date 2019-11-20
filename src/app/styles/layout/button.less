@@ -1,0 +1,42 @@
+button,
+.button {
+	display: block;
+	box-sizing: border-box;
+	padding: @COMPONENT_button_padding;
+	margin: @COMPONENT_button_margin_t @COMPONENT_button_margin_r @COMPONENT_button_margin_b @COMPONENT_button_margin_l;
+	border: @COMPONENT_button_border;
+	border-radius: @COMPONENT_button_border_radius;
+	text-align: center;
+	cursor: pointer;
+	color: @COMPONENT_button_inactive_color;
+	background: @COMPONENT_button_inactive_bg_color;
+	font-family: @COMPONENT_button_font_family;
+	font-weight: @page_base_font_weight_medium;
+	text-transform: capitalize;
+	text-decoration: none;
+	font-size: 1.1em;
+
+	&:active {
+		color: @COMPONENT_button_active_color;
+		background: @COMPONENT_button_active_bg_color;
+	}
+
+	&.medium {
+		padding: @COMPONENT_button_medium_padding;
+		font-weight: @COMPONENT_button_medium_font_weight;
+		font-size: @COMPONENT_button_medium_font_size;
+		margin:  @COMPONENT_button_medium_margin;
+
+		&:last-of-type { margin-right: 0; }
+	}
+
+	&.big {
+		padding: @COMPONENT_button_big_padding;
+		font-weight: @COMPONENT_button_big_font_weight;
+		font-size: @COMPONENT_button_big_font_size;
+	}
+
+	&.uppercase {
+		text-transform: uppercase;
+	}
+}

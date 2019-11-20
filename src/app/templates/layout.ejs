@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>Audio Commons Search</title>
+
+	<link href="css/all.css" rel="stylesheet">
+
+	<link rel="icon" href="/images/favicon.png">
+
+	<link rel="stylesheet" href="jqui/jquery-ui.min.css">
+	<link rel="stylesheet" href="jqui/jquery-ui.structure.min.css">
+	<link rel="stylesheet" href="jqui/jquery-ui.theme.min.css">
+	<script src="jqui/external/jquery/jquery.js"></script>
+	<script src="jqui/jquery-ui.min.js"></script>
+
+	<script src="js/require.js"></script>
+	<script src="js/all.js"></script>
+</head>
+
+<body>
+	<!-- HEADER -->
+	<section class="page-layout-header-wrapper">
+		<header class="header-bar">
+			<div class="logo"></div>
+
+			<nav class="header-navigation">
+				<ul class="nav-list">
+					<li>
+						<a href="https://www.audiocommons.org/about/">About</a>
+					</li>
+					<li class="selected">
+						<a href="#">Audio Search</a>
+					</li>
+					<li>
+						<a href="https://www.audiocommons.org/team/">Team</a>
+					</li>
+					<li>
+						<a href="https://www.audiocommons.org/materials/">Materials</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	</section>
+	<!-- /HEADER -->
+
+	<!-- MAIN CONTENT -->
+	<section class="page-layout-main-content-wrapper">
+		<%- body %>
+	</section>
+	<!-- /MAIN CONTENT -->
+
+	<% if (imports.pageScript) { %>
+		<script>
+			(function() {
+				var pageScriptName = '<%= imports.pageScript %>';
+
+				require(['app/client/components/index'], function(module) {
+					// import the page script
+					require(['app/client/pages/' + pageScriptName], function(module) {
+						// the default import is the page class constructor
+						var page = new module.default();
+						page.init();
+					});
+				});
+			})();
+		</script>
+	<% } %>
+
+	<script>
+		(function() {
+			$(document).ready(function() {
+				var html = $('html');
+
+				// Operating System:
+				var os = navigator.platform;
+
+				switch (true) {
+					case /windows/i.test(os):
+					case /win32/i.test(os):
+						os = 'windows';
+						break;
+
+					case /linux/i.test(os):
+						os = 'linux';
+						break;
+
+					case /macintel/i.test(os):
+					case /macintosh/i.test(os):
+						os = 'macos';
+						break;
+
+					case /iphone/i.test(os):
+					case /ipad/i.test(os):
+					case /ios/i.test(os):
+						os = 'ios';
+						break;
+				}
+				
+				html.attr('data-env-os', os);
+			});
+		})();
+	</script>
+</body>
+
+</html>

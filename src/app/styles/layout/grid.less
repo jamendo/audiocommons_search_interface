@@ -1,0 +1,102 @@
+.ac-grid-container {
+	&, .ac-grid-row {
+		float: left;
+		clear: both;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.ac-grid-row {
+	margin: 0.4em 0;
+
+	// Remove margins for directly nested grid rows.
+	// This allows to build constructs such as the following one without weird
+	// duplicate margins:
+	//
+	//        <div class="ac-grid-row">
+	//            <div class="ac-grid-row">
+	//                ...
+	//            </div>
+	//        </div>
+	& > & {
+		margin: 0;
+	}
+}
+
+.ac-grid-no-v-margins {
+	margin-top: 0!important;
+	margin-bottom: 0!important;
+}
+
+.ac-grid-col-12,
+.ac-grid-col-11,
+.ac-grid-col-10,
+.ac-grid-col-9,
+.ac-grid-col-8,
+.ac-grid-col-7,
+.ac-grid-col-6,
+.ac-grid-col-5,
+.ac-grid-col-4,
+.ac-grid-col-3,
+.ac-grid-col-2,
+.ac-grid-col-1 {
+	float: left;
+	clear: none;
+	box-sizing: border-box;
+	// The min height forces the browser to render even empty columns with a width:
+	min-height: 1px;
+
+	// Since the outermost columns don't have a column gutter on their outer edges,
+	// we subtract 1/12th of the column gutter from the paddings of each column.
+	// This way, columns remain evenly sized.
+	padding: 0 (@page_grid_column_gutter / 2) - (@page_grid_column_gutter / 2 / 12);
+
+	// Remove the paddings from the outermost columns. More precisely, we remove the
+	// left padding from the very left column and the right padding from the very
+	// right column,
+	&:first-of-type {
+		padding-left: 0;
+	}
+	&:last-of-type {
+		padding-right: 0;
+	}
+
+	// Right floating:
+	&.ac-grid-col-right {
+		float: right;
+	}
+}
+
+.ac-grid-col-1 { width: (100 / 12%) * 1; }
+.ac-grid-col-2 { width: (100 / 12%) * 2; }
+.ac-grid-col-3 { width: (100 / 12%) * 3; }
+.ac-grid-col-4 { width: (100 / 12%) * 4; }
+.ac-grid-col-5 { width: (100 / 12%) * 5; }
+.ac-grid-col-6 { width: (100 / 12%) * 6; }
+.ac-grid-col-7 { width: (100 / 12%) * 7; }
+.ac-grid-col-8 { width: (100 / 12%) * 8; }
+.ac-grid-col-9 { width: (100 / 12%) * 9; }
+.ac-grid-col-10 { width: (100 / 12%) * 10; }
+.ac-grid-col-11 { width: (100 / 12%) * 11; }
+.ac-grid-col-12 { width: (100 / 12%) * 12; }
+
+
+// Modifiers used for both rows and columns:
+.ac-grid-row,
+.ac-grid-col-12,
+.ac-grid-col-11,
+.ac-grid-col-10,
+.ac-grid-col-9,
+.ac-grid-col-8,
+.ac-grid-col-7,
+.ac-grid-col-6,
+.ac-grid-col-5,
+.ac-grid-col-4,
+.ac-grid-col-3,
+.ac-grid-col-2,
+.ac-grid-col-1 {
+	&.ac-grid-expand-v {
+		height: 100%;
+	}
+}

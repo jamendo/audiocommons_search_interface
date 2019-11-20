@@ -1,0 +1,14 @@
+//
+// main.less
+// Styles for the page's main content section.
+//
+
+.page-layout-main-content-wrapper {
+	float: left;
+	box-sizing: border-box;
+	width: 100%;
+	height: calc(100vh - @page_header_bar_height - @page_header_bar_padding_t - @page_header_bar_padding_b);
+	padding: 0 calc(0.5 * (100vw - @page_main_content_section_width));
+	overflow-x: hidden;
+	overflow-y: auto;
+}

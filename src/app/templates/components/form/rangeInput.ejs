@@ -1,0 +1,45 @@
+<%
+var _min, _max, _value;
+
+if (typeof min === 'undefined') {
+	_min = 0;
+} else {
+	_min = min;
+}
+
+if (typeof max === 'undefined') {
+	_max = 100;
+} else {
+	_max = max;
+}
+
+if (typeof value === 'undefined') {
+	_value = [_min, _max];
+} else {
+	_value = value;
+}
+
+if (typeof noValueIfFullRangeSelected === 'undefined') {
+	_noValueIfFullRangeSelected = false;
+} else {
+	_noValueIfFullRangeSelected = noValueIfFullRangeSelected;
+}
+%>
+
+<div
+	data-ac-component="form/rangeInput"
+	data-ac-component-options="<%- encodeURIComponent(JSON.stringify({ min: _min, max: _max, value: _value, noValueIfFullRangeSelected: _noValueIfFullRangeSelected, step: typeof step !== 'undefined' ? step : undefined })) %>"
+	<%- typeof formFieldId !== 'undefined' ? 'data-ac-attr-formFieldId="' + formFieldId + '"' : '' %>
+	<%- 'data-ac-attr-noValueIfFullRangeSelected="' + noValueIfFullRangeSelected + '"' %>
+>
+	<div class="label<%= typeof label !== 'string' || label.trim().length === 0 ? ' empty' : '' %>">
+		<%= typeof label !== 'undefined' ? label : '' %>
+	</div>
+
+	<%- partial('../../components/infoOverlayTrigger') %>
+
+	<div class="slider"></div>
+
+	<div class="numeric-label low"><%= _value[0] %></div>
+	<div class="numeric-label high"><%= _value[1] %></div>
+</div>

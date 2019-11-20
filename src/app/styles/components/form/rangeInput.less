@@ -1,0 +1,44 @@
+[data-ac-component="form/rangeInput"] {
+	float: left;
+	clear: both;
+	width: 100%;
+	height: auto;
+
+	.label {
+		float: left;
+		clear: none;
+		width: auto;
+		height: 1.3em;
+	}
+
+	.slider {
+		float: left;
+		clear: both;
+		width: 92%;
+		margin: 0 0.5em 0.3em;
+	}
+
+	.numeric-label {
+		float: left; 
+		width: auto;
+
+		&.low {
+			clear: left;
+			margin-left: 5%;
+		}
+
+		&.high {
+			float: right;
+			clear: right;
+			margin-right: 5%;
+		}
+	}
+
+	&[data-ac-attr-noValueIfFullRangeSelected="true"].full-range-selected {
+		.numeric-label {
+			&.high::after {
+				content: "+";
+			}
+		}
+	}
+}

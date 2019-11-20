@@ -1,0 +1,17 @@
+FROM node:9-alpine
+ 
+EXPOSE 8080
+ 
+WORKDIR /audiocommons/
+
+RUN apk add --no-cache curl
+ 
+ADD package.json package.json
+RUN npm i
+
+ADD tsconfig.json .
+ADD tests tests
+ADD src src
+
+RUN npm run-script css:darwin:linux
+RUN npm run-script client-js

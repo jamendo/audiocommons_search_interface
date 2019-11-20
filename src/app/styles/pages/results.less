@@ -1,0 +1,101 @@
+[data-ac-current-page="results"] body {
+	background: #fff;
+
+	.page-layout-main-content-wrapper {
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.content[data-ac-page="results"] {
+	background: #fff;
+	width: 100%;
+	height: 100%;
+
+	.results-header-bar-wrapper {
+		box-sizing: border-box;
+		width: 100%;
+		height: @PAGE_results_header_bar_outer_height;
+		background-color: @PAGE_results_header_bar_bg_color;
+		padding: @PAGE_results_header_bar_padding_t @PAGE_results_header_bar_padding_r @PAGE_results_header_bar_padding_b @PAGE_results_header_bar_padding_l;
+
+		> header {
+			// to align items verticaly
+			display: flex;
+			align-items: center;
+			height: 100%;
+
+			[data-ac-attr-formfieldid="TextQuery"] {
+				width: 45vw;
+				margin-right: 0.86em;
+			}
+
+			> * { margin-right: 0.5em; }
+		}
+	}
+
+	.results-panel-outer-wrapper {
+		box-sizing: border-box;
+		width: 100%;
+		height: calc(100% ~'-' @PAGE_results_header_bar_outer_height);
+		padding: @PAGE_results_outer_wrapper_padding_t @PAGE_results_outer_wrapper_padding_r @PAGE_results_outer_wrapper_padding_b @PAGE_results_outer_wrapper_padding_l;
+	}
+
+	[data-ac-component="form/segmentedButton"] {
+		.label {
+			font-size: 1.35em;
+		}
+
+		.button-list {
+			button,
+			.button {
+				@buttons_per_row: 3;
+				@margin_right: 0.3em;
+
+				flex-basis: calc((100% / @buttons_per_row) - @COMPONENT_button_margin_l - @margin_right);
+				flex-grow: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				margin-right: @margin_right;
+				white-space: nowrap;
+
+				&:nth-of-type(@{buttons_per_row}n),
+				&:last-of-type {
+					margin-right: 0;
+				}
+			}
+		}		
+	}
+
+	// specific rules for the results panel header to diplay on a single line
+	[data-ac-attr-formfieldid="results-panel-provider-select"],
+	[data-ac-attr-formfieldid="ResultSorting"] {
+		.label {
+			clear: none;
+			line-height: 1.9;
+			margin-right: 8px;
+		}
+
+		.button-list {
+			clear: none;
+			width: 50%;
+		}
+	}
+
+	[data-ac-attr-formfieldid="ResultSorting"] {
+		.label {
+			width: calc(40% - 8px);
+			text-align: right;
+		}
+
+		.button-list {
+			width: 60%;
+		}
+	}
+
+	.results-counter {
+		font-size: 1.2em;
+		padding-left: 0;
+		line-height: 2.1;
+	}
+}

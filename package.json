@@ -1,0 +1,58 @@
+{
+  "private": true,
+  "name": "audiocommons",
+  "scripts": {
+    "test": "node ./node_modules/.bin/mocha tests/all.ts --require ts-node/register --reporter progress",
+    "watch": "npm-watch",
+    "watch-css:darwin:linux": "nodemon -e less -x \"npm run-script css:darwin:linux\"",
+    "watch-css:win32": "nodemon -e less -x \"npm run-script css:win32\"",
+    "client-js": "node ./node_modules/.bin/tsc --baseUrl ./src/ --outFile src/app/static/js/all.js --experimentalDecorators --lib dom,es5,es6,es2015 --target ES5 --module AMD --moduleResolution node src/app/client/index.ts",
+    "css:darwin:linux": "./node_modules/.bin/lessc --glob src/app/styles/main.less > src/app/static/css/all.css",
+    "start": "run-script-os",
+    "start:darwin:linux": "npm run-script css:darwin:linux && npm run-script client-js && node --inspect -r ts-node/register src/app/server.ts",
+    "containerize-dev": "docker build . -t audiocommons_dev -f Dockerfile.develop",
+    "containerize-prod": "docker build . -t audiocommons_prod -f Dockerfile.production",
+    "docker": "npm run-script containerize-dev && docker run -p 8080:8080 -v `pwd`/src:/audiocommons/src -v `pwd`/tests:/audiocommons/tests audiocommons_dev npm run-script ${1}",
+    "client-js:win32": "cmd /c .\\node_modules\\.bin\\tsc.cmd --baseUrl ./src/ --outFile src/app/static/js/all.js --experimentalDecorators --lib dom,es5,es6,es2015 --target ES5 --module AMD --moduleResolution node src/app/client/index.ts",
+    "css:win32": "cmd /c .\\node_modules\\.bin\\lessc.cmd --glob src/app/styles/main.less > .\\src\\app\\static\\css\\all.css",
+    "start:win32": "npm run-script css:win32 && npm run-script client-js:win32 && cmd /c .\\node_modules\\.bin\\ts-node.cmd src/app/server.ts",
+    "docker-watch-js:win32": "npm run-script containerize-dev && docker run -p 8080:8080 -v ./src:/audiocommons/src -v ./tests:/audiocommons/tests audiocommons_dev npm run-script watch"
+  },
+  "watch": {
+    "start:darwin:linux": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "ts,html,ejs,jpg,png,gif",
+      "quiet": false,
+      "delay": 300
+    }
+  },
+  "dependencies": {
+    "@types/express": "^4.16.0",
+    "@types/jquery": "^3.3.4",
+    "@types/jqueryui": "^1.12.2",
+    "@types/node": "^10.3.6",
+    "@types/request-promise": "^4.1.41",
+    "app-module-path": "^2.2.0",
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "ejs-locals": "^1.0.2",
+    "express": "^4.16.3",
+    "express-serve-static-core": "^0.1.1",
+    "globby": "^8.0.1",
+    "less": "^3.0.4",
+    "less-plugin-glob": "^2.0.2",
+    "nodemon": "^1.17.5",
+    "request-promise": "^4.2.2",
+    "run-script-os": "^1.0.3",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  },
+  "devDependencies": {
+    "@types/mocha": "^5.2.3",
+    "mocha": "^5.2.0",
+    "mocha-typescript": "^1.1.16",
+    "npm-watch": "^0.3.0"
+  }
+}

@@ -1,0 +1,94 @@
+<header class="ac-grid-row ac-grid-no-v-margins header">
+
+	<!-- Provider -->
+	<div class="ac-grid-col-4">
+		<%- partial('../../../components/form/segmentedButton', {
+			formFieldId: 'results-panel-provider-select',
+			selectType: 'single',
+			style: 'dropdown',
+			modifiers: ['uppercase'],
+			label: translate('pages.results.resultsPanel.header.changeProviderLabel'),
+			buttons: Object.keys(sharedData.api.services.services)
+				.map(function(serviceName, index) {
+					var serviceInfo = sharedData.api.services.services[serviceName];
+					return {
+						label: serviceName,
+						value: serviceName,
+						selected: index === 0
+					};
+				})
+				.sort(function(a, b) {
+					return a.label.toUpperCase() > b.label.toUpperCase() ? 1 : -1;
+				})
+		}) %>
+	</div>
+	<!-- /Provider -->
+
+
+	<div class="ac-grid-col-2 results-counter">
+		<span class="results-count">0</span>
+		<span class="label"><%= translate('pages.results.resultsPanel.header.resultsFound') %></span>
+	</div>
+
+
+	<!-- Sorting -->
+	<div class="ac-grid-col-4 ac-grid-col-right">
+		<%- partial('../../../components/form/segmentedButton', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.ResultSorting,
+			selectType: 'single',
+			style: 'dropdown',
+			label: translate('pages.results.resultsPanel.header.sortingLabel'),
+			buttons: [
+			
+				{
+					label: translate('pages.results.resultsPanel.header.sortByRelevanceAsc'),
+					value: 'relevance'
+				},
+				{
+					label: translate('pages.results.resultsPanel.header.sortByRelevanceDesc'),
+					value: '-relevance',
+					selected: true
+				},
+				
+				{
+					label: translate('pages.results.resultsPanel.header.sortByPopularityAsc'),
+					value: 'popularity'
+				},
+				{
+					label: translate('pages.results.resultsPanel.header.sortByPopularityDesc'),
+					value: '-popularity'
+				},
+				
+				{
+					label: translate('pages.results.resultsPanel.header.sortByDurationAsc'),
+					value: 'duration'
+				},
+				{
+					label: translate('pages.results.resultsPanel.header.sortByDurationDesc'),
+					value: '-duration'
+				},
+				
+				{
+					label: translate('pages.results.resultsPanel.header.sortByCreatedAsc'),
+					value: 'created'
+				},
+				{
+					label: translate('pages.results.resultsPanel.header.sortByCreatedDesc'),
+					value: '-created'
+				},
+				
+				{
+					label: translate('pages.results.resultsPanel.header.sortByDownloadsAsc'),
+					value: 'downloads'
+				},
+				{
+					label: translate('pages.results.resultsPanel.header.sortByDownloadsDesc'),
+					value: '-downloads'
+				}
+			
+			]
+		}) %>
+	</div>
+	<!-- /Sorting -->
+
+</header>

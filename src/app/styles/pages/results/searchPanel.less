@@ -1,0 +1,77 @@
+.content[data-ac-page="results"] .search-panel {
+	box-sizing: border-box;
+	height: 100%;
+	font-size: @PAGE_results_search_panel_font_size;
+	border-top: @PAGE_results_search_panel_border_t;
+	border-right: @PAGE_results_search_panel_border_r;
+	border-bottom: @PAGE_results_search_panel_border_b;
+	border-left: @PAGE_results_search_panel_border_l;
+	padding: @PAGE_results_search_panel_padding_t @PAGE_results_search_panel_padding_r @PAGE_results_search_panel_padding_b @PAGE_results_search_panel_padding_l;
+	overflow-x: hidden;
+	overflow-y: hidden;
+
+	> * {
+		margin-bottom: @PAGE_results_search_panel_content_margin_bottom;
+	}
+
+	// Special case for duration to have the same spacing between elements
+	[data-ac-attr-formfieldid="Duration"] {
+		margin-top: 0.8em;
+	}
+
+	&:hover {
+		overflow-y: scroll;
+		// Remove the extra padding again cause the scrollbar is now visible:
+		padding-right: @PAGE_results_search_panel_padding_r!important;
+	}
+
+	.header {
+		background: @PAGE_results_search_panel_header_bg_color;
+
+		h2 {
+			color: @PAGE_results_search_panel_header_color;
+			text-transform: @PAGE_results_search_panel_header_text_transform;
+			font-size: @PAGE_results_search_panel_header_font_size;
+			margin: @PAGE_results_search_panel_header_margin;
+		}
+	}
+
+	[data-ac-attr-formfieldid="CreationDate"],
+	[data-ac-attr-formfieldid="Duration"],
+	[data-ac-attr-formfieldid="Samplerate"],
+	[data-ac-attr-formfieldid="Bitrate"],
+	[data-ac-attr-formfieldid="Bitdepth"],
+	[data-ac-attr-formfieldid="FileSize"] {
+		.label {
+			clear: none;
+			width: auto;
+			font-size: 1.35em;
+			text-transform: capitalize;
+			font-weight: @page_base_font_weight_medium;
+			color: @COMPONENT_segmented_button_color;
+		}
+	}
+
+	[data-ac-component="infoOverlayTrigger"] {	
+		.content {
+			background: @PAGE_results_search_panel_info_overlay_bg_color;
+		}
+	}
+}
+
+//
+// We add an extra padding to make up for the hidden scrollbar, depending
+// on browser and operating system:
+//
+
+.content[data-ac-page="results"] .search-panel {
+	padding-right: @PAGE_results_search_panel_padding_r + 17px;
+}
+
+[data-env-os="linux"] .content[data-ac-page="results"] .search-panel {
+	padding-right: @PAGE_results_search_panel_padding_r + 15px;
+}
+
+[data-env-os="macos"] .content[data-ac-page="results"] .search-panel {
+	padding-right: @PAGE_results_search_panel_padding_r + 0px;
+}

@@ -1,0 +1,31 @@
+<% layout('../layout') %>
+
+<main class="content ac-grid-container" data-ac-page="results" data-ac-page-data="<%- encodeURIComponent(JSON.stringify(sharedData)) %>">
+
+<!--% debugger %-->
+
+	<!-- HEADER BAR -->
+	<div class="ac-grid-row ac-grid-no-v-margins results-header-bar-wrapper">
+		<%- partial('./results/headerBar') %>
+	</div>
+	<!-- /HEADER BAR -->
+
+	<div class="ac-grid-row ac-grid-no-v-margins ac-grid-expand-v results-panel-outer-wrapper">
+		<!-- SEARCH PANEL -->
+		<div class="ac-grid-col-2 ac-grid-expand-v">
+			<%- partial('./results/searchPanel', {sharedData: sharedData}) %>
+		</div>
+		<!-- /SEARCH PANEL -->
+
+		<!-- RESULTS PANEL -->
+		<div class="ac-grid-col-10 ac-grid-expand-v results-panel-wrapper">
+			<%- partial('./results/resultsPanel') %>
+		</div>
+		<!-- /RESULTS PANEL -->
+	</div>
+
+</main>
+
+<!-- PLAYER POPOUT -->
+<%- partial('../components/player/playerPopout') %>
+<!-- /PLAYER POPOUT -->

@@ -1,0 +1,40 @@
+[data-ac-component="form/dateRange"] {
+	@padding_left_adjust: 0.5em;
+
+	margin: @COMPONENT_date_range_margin;
+	width: calc(100% - @padding_left_adjust);
+
+	.label {
+		float: left;
+	}
+
+	.clear-button {
+		cursor: pointer;
+		font-size: 14px;
+		float: right;
+	}
+
+	.from, .to {
+		width: calc(100% - @padding_left_adjust);
+		height: @COMPONENT_date_range_input_height;
+		font-family: @COMPONENT_date_range_font_family;
+		font-size: @COMPONENT_date_range_font_size;
+		color: @COMPONENT_date_range_input_color;
+		font-weight: @COMPONENT_date_range_font_weight;
+		padding-left: @padding_left_adjust;
+		outline: none;
+
+		&::placeholder {
+			color: @COMPONENT_date_range_placeholder_color;
+		}
+
+		&:first-of-type {
+			margin: 0.4em 0 0.8em 0;
+		}
+	}
+}
+
+// JQuery UI component overwrite
+.ui-datepicker {
+	z-index: @layer_date_picker_component !important;
+}

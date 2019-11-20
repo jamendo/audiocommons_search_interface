@@ -1,0 +1,17 @@
+<header class="header-bar">
+
+	<div>
+		<%- partial('../../components/form/searchField', {
+			formFieldId: symbols.SearchFormFieldIdentifiers.TextQuery
+		}) %>
+	</div>
+
+	<!--button class="ac-search-form-submit-button medium uppercase">
+		<%= translate('pages.results.updateSearchButtonLabel') %>
+	</button-->
+
+	<a class="button medium uppercase" href="/search">
+		<%= translate('pages.results.newSearchButtonLabel') %>
+	</a>
+
+</header>

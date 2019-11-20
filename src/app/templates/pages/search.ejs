@@ -1,0 +1,149 @@
+<% layout('../layout') %>
+
+<main class="content ac-grid-container" data-ac-page="search">
+	<div class="ac-grid-row">
+		<h1><%= translate('pages.search.heading1') %></h1>
+	</div>
+
+	<!-- 2 columns container -->
+	<div class="ac-grid-row">
+		<!-- left column -->
+		<div class="ac-grid-col-6">
+			<!-- MAIN SEARCH TEXT FIELD -->
+
+			<div class="ac-grid-row">
+				<%- partial('../components/form/searchField', {
+					formFieldId: symbols.SearchFormFieldIdentifiers.TextQuery
+				}) %>
+			</div>
+
+			<!-- /MAIN SEARCH TEXT FIELD -->
+
+
+			<!-- MUSIC TYPE SECTION -->
+			<div class="ac-grid-row">
+				<h3><%= translate('pages.search.musicTypeHeading') %></h3>
+			</div>
+
+			<!-- Music Type -->
+			<div class="ac-grid-row">
+				<div class="ac-grid-col-12">
+					<%- partial('../components/form/segmentedButton', {
+						formFieldId: symbols.SearchFormFieldIdentifiers.MusicType,
+						selectType: 'multi',
+						minSelections: 1,
+						hideInfoOverlayTrigger: true,
+						buttons: [{
+							label: translate('pages.search.musicTypeSong'),
+							value: 'song',
+							modifiers: ['medium'],
+							selected: true
+						}, {
+							label: translate('pages.search.musicTypeSample'),
+							value: 'sample',
+							modifiers: ['medium'],
+							selected: true
+						}]
+					}) %>
+				</div>
+			</div>
+			<!-- /Music Type -->
+
+			<!-- /MUSIC TYPE SECTION -->
+
+
+
+			<!-- LICENSE SECTION -->
+
+			<div class="ac-grid-row">
+				<h3><%= translate('pages.search.licenseSectionHeading') %></h3>
+				<%- partial('../components/infoOverlayTrigger', {
+					content: translate('pages.search.licenseHeadingInfoOverlayContent')
+				}) %>
+			</div>
+
+			<div class="ac-grid-row">
+				<!-- Free Commercial Use -->
+				<div class="ac-grid-col-4">
+					<%- partial('../components/form/segmentedButton', {
+						formFieldId: symbols.SearchFormFieldIdentifiers.FreeCommercialUse,
+						selectType: 'single',
+						label: translate('pages.search.allowFreeCommercialUseLabel'),
+						hideInfoOverlayTrigger: true,
+						buttons: [{
+							label: translate('generic.yes'),
+							modifiers: ['medium'],
+							value: true
+						}, {
+							label: translate('generic.no'),
+							value: false,
+							modifiers: ['medium'],
+							selected: true
+						}]
+					}) %>
+				</div>
+				<!-- /Free Commercial Use -->
+
+				<!-- Allow Modifications -->
+				<div class="ac-grid-col-8">
+					<%- partial('../components/form/segmentedButton', {
+						formFieldId: symbols.SearchFormFieldIdentifiers.ModificationsAllowed,
+						selectType: 'single',
+						label: translate('pages.search.allowModificationsLabel'),
+						hideInfoOverlayTrigger: true,
+						buttons: [{
+							label: translate('generic.yes'),
+							modifiers: ['medium'],
+							value: 'allowed'
+						}, {
+							label: translate('pages.search.allowModificationsAlasShareAlike'),
+							modifiers: ['medium'],
+							value: 'allowed-when-share-alike'
+						}, {
+							label: translate('generic.no'),
+							value: 'disallowed',
+							modifiers: ['medium'],
+							selected: true
+						}]
+					}) %>
+				</div>
+				<!-- /Allow Modifications -->
+			</div>
+
+			<div class="ac-grid-row">
+				<%- partial('../components/licenseConditionList') %>
+			</div>
+
+			<!-- /LICENSE SECTION -->
+
+		</div>
+
+
+		<!-- right column -->
+		<div class="ac-grid-col-6">
+			<!-- Genres, Moods, Themes & Instruments -->
+			<%- partial('../shared/moodsGenresThemesInstruments', {
+				parts: ['genres', 'moods', 'themes', 'instruments'],
+				hideInfoOverlayTrigger: true,
+				getSegmentedButtonLabel: function(part) {
+					return translate('pages.search.' + part + 'Label');
+				},
+				getItemLabel: function(item, part) {
+					return translate('data.' + part + '.' + item.name, item.name);
+				}
+			}) %>
+			<!-- /Genres, Moods, Themes & Instruments -->
+		</div>
+	</div>
+	<!-- /2 columns container -->
+
+	<!-- Submit Button -->
+	<div class="ac-grid-row">
+		<div class="ac-grid-col-12">
+			<button class="ac-search-form-submit-button big uppercase">
+				<%= translate('pages.search.submitButtonLabel') %>
+			</button>
+		</div>
+	</div>
+	<!-- /Submit Button -->
+</main>

@@ -1,0 +1,25 @@
+<%
+for (let i = 0; i < parts.length; i++) {
+	var part = parts[i];
+	var partCapitalized = part[0].toUpperCase() + part.slice(1);
+%>
+	<div class="ac-grid-row">
+		<div class="ac-grid-col-12">
+			<%- partial('../components/form/segmentedButton', {
+				formFieldId: symbols.SearchFormFieldIdentifiers[partCapitalized],
+				selectType: 'multi',
+				style: 'expandable',
+				minSelections: 0,
+				label: getSegmentedButtonLabel(part),
+				modifiers: typeof modifiers !== 'undefined' ? modifiers : undefined,
+				buttons: data[part].map(function(item) {
+					return {
+						label: getItemLabel(item, part),
+						value: item.name,
+						selected: false
+					};
+				})
+			}) %>
+		</div>
+	</div>
+<% } %>

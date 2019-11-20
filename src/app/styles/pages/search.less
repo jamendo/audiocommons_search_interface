@@ -1,0 +1,76 @@
+[data-ac-current-page="search"] body {
+	background-image: url('/images/search-page-bg-big.jpg');
+	background-size: cover;
+	background-position: center;
+
+	.ac-search-form-submit-button { float: right; }
+
+	.page-layout-main-content-wrapper {
+		height: 100%;
+	}
+}
+
+.content[data-ac-page="search"] {
+	box-sizing: border-box;
+	float: left;
+	width: 100%;
+	padding: @PAGE_search_main_content_padding_t @PAGE_search_main_content_padding_r @PAGE_search_main_content_padding_b @PAGE_search_main_content_padding_l;
+	margin: @PAGE_search_main_content_margin_t 0 @PAGE_search_main_content_margin_b 0;
+	background: @PAGE_search_main_content_bg_color;
+	border-radius: @PAGE_search_main_content_border_radius;
+
+	[data-ac-component="form/searchField"] {
+		margin-top: 33px;
+	}
+
+	[data-ac-component="form/segmentedButton"] {
+		.button {	
+			flex-grow: 1;
+		}
+
+		button,
+		.button {
+			@buttons_per_row: 5;
+
+			&:nth-of-type(@{buttons_per_row}n),
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}		
+	}
+
+	[data-ac-component="form/segmentedButton"] {
+		&[data-ac-attr-formfieldid="Genres"],
+		&[data-ac-attr-formfieldid="Moods"],
+		&[data-ac-attr-formfieldid="Themes"],
+		&[data-ac-attr-formfieldid="Instruments"] {
+			.label {
+				.TYPOGRAPHY_h3();
+			}
+		}
+	}
+
+	[data-ac-component="licenseConditionList"] {
+		font-size: 16px;
+
+		.license-conditions {
+			&::after {
+				content: "";
+				width: 100%;
+				border-bottom: 2px solid @grey-normal;
+				position: absolute;
+				left:0;
+				top: 50%;
+				z-index: 1;
+			}
+
+			> * {
+				background-color: #fff;
+
+				&::after {
+					opacity: 0.65;
+				}
+			}
+		}
+	}
+}

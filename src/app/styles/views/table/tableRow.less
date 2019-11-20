@@ -1,0 +1,13 @@
+.COMPONENT_table_tableRow() {
+	display: flex;
+	float: left;
+	clear: both;
+	width: 100%;
+	height: auto;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+[data-ac-view="table/tableRow"] {
+	.COMPONENT_table_tableRow();
+}

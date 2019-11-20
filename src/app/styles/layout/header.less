@@ -1,0 +1,68 @@
+//
+// header.less
+// Styles for the page's header bar.
+//
+
+.page-layout-header-wrapper {
+	.header-bar {
+		@header_bar_outer_height: calc(@page_header_bar_height ~'+' @page_header_bar_padding_t ~'+' @page_header_bar_padding_b);
+		box-sizing: border-box;
+		width: 100%;
+		height: @header_bar_outer_height;
+		padding: 0 @page_header_bar_padding_r 0 @page_header_bar_padding_l;
+		background: @page_header_bar_bg_color;
+		font-family: @page_header_font_family;
+		font-weight: @page_header_font_weight;
+
+		.logo {
+			float: left;
+			box-sizing: border-box;
+			height: calc(100% ~'-' @page_header_bar_padding_t ~'-' @page_header_bar_padding_b);
+			width: 30%;
+			margin: @page_header_bar_padding_t 0 @page_header_bar_padding_b 0;
+			background-image: url(@page_header_bar_logo_url);
+			background-size: @page_header_bar_logo_size;
+			background-position: @page_header_bar_logo_position;
+			background-repeat: @page_header_bar_logo_repeat;
+		}
+
+		.header-navigation {
+			float: right;
+			width: 50%;
+			max-width: 400px;
+			height: 100%;
+			overflow: hidden;
+
+			.nav-list {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				li {
+					height: 100%;
+					padding: 0 1em;
+					color: #fff;
+
+					&.selected {
+						background: #fff;
+						color: @page_header_bar_bg_color;
+					}
+
+					a {
+						display: block;
+						width: 100%;
+						height: 100%;
+						line-height: @header_bar_outer_height;
+						color: inherit;
+						text-transform: uppercase;
+						text-decoration: none;
+					}
+				}
+			}
+		}
+	}
+}

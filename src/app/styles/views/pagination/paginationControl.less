@@ -1,0 +1,43 @@
+[data-ac-view="pagination/paginationControl"] {
+	float: right;
+
+	&, > * {
+		clear: none;
+		width: auto;
+		height: auto;
+	}
+
+	> * {
+		float: left;
+	}
+
+	&.prev-button-disabled.next-button-disabled {
+		display: none;
+	}
+
+	.button {
+		cursor: pointer;
+		min-width: @PAGE_results_pagination_buttons_min_width;
+
+		&.disabled {
+			cursor: not-allowed;
+			opacity: 0.5;
+		}
+	}
+
+	.numeric-pagination {
+		margin: @PAGE_results_pagination_numeric_pagination_margin;
+		font-size: @PAGE_results_pagination_numeric_pagination_font_size;
+
+		* {
+			display: inline-block;
+			clear: none;
+		}
+
+		.page-input {
+			width: 5em;
+			height: 1.7em;
+			text-align: right;
+		}
+	}
+}
