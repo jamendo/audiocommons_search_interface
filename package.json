@@ -38,7 +38,7 @@
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "ejs-locals": "^1.0.2",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-serve-static-core": "^0.1.1",
     "globby": "^8.0.1",
     "less": "^3.0.4",
